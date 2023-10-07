@@ -76,16 +76,41 @@ class _ItemListState extends State<ItemList> {
       context: context,
       builder: (BuildContext context) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.2,
+          color: Colors.white,
+          height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Name: ${data[index]['name']}')
-              ],
-            ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(
+                data[index]['image_link'],
+                width: 50,
+                height: 50,
+              ),
+              const SizedBox(width: 10),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Container(
+                    padding: const EdgeInsets.only(left: 15),
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: Text(data[index]['name'], softWrap: true)),
+                Container(
+                  padding: const EdgeInsets.only(left: 15),
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  child: Text(
+                    data[index]['description'],
+                    style: TextStyle(color: Colors.grey[400]),
+                  ),
+                ),
+              ]),
+              Column(
+                children: [
+                  Text('yo'),
+                  const SizedBox(width: 10),
+                  Text('yo'),
+                ],
+              )
+            ],
           ),
         );
       },
